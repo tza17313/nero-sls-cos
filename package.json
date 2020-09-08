@@ -1,5 +1,6 @@
 {
-  "name": "@serverless/cos",
+  "name": "nero-sls-cos",
+  "version": "1.0.0",
   "main": "src/serverless.js",
   "publishConfig": {
     "access": "public"
@@ -33,7 +34,7 @@
       "git add ."
     ]
   },
-  "author": "Tencent Cloud, Inc.",
+  "author": "nero",
   "license": "MIT",
   "dependencies": {},
   "devDependencies": {

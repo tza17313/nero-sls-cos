@@ -1,10 +1,13 @@
 # 腾讯云对象存储 COS 组件
 
-简体中文 | [English](https://github.com/serverless-components/tencent-cos/tree/master/README.en.md)
 
 ## 简介
 
-通过对象存储 COS 组件，可以快速，方便的创建，配置和管理腾讯云的 COS 存储桶
+通过对象存储 COS 组件，可以快速，方便的创建，配置和管理腾讯云的 COS 存储桶；
+
+基于 https://github.com/serverless-components/tencent-cos 做了修改；
+
+**去除了 `website: false` 或者 website为空时会关闭【静态网站】的逻辑；**
 
 ## 快速开始
 

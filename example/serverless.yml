@@ -1,15 +1,31 @@
-org: orgDemo
-app: appDemo
-stage: dev
-component: cos
-name: cosDemo
+# serverless.yml
+
+component: nero-sls-cos # (必填) 组件名称，此处为 cos
+name: react-admin # (必填) 实例名称
+#org: orgDemo # (可选) 用于记录组织信息，默认值为您的腾讯云账户 appid
+app: RAdmin # (可选) 该应用名称
+stage: dev # (可选) 用于区分环境信息，默认值为 dev
 
 inputs:
-  src: ./files
-  targetDir: /
+  src: ./build/
+  bucket: fe-site
   website: false
-  bucket: my-bucket
-  region: ap-guangzhou
+  targetDir: /cos-test-beta/
   protocol: https
+  region: ap-shanghai
   acl:
     permissions: public-read
+#  cors:
+#    - id: abc
+#      maxAgeSeconds: '10'
+#      allowedMethods:
+#        - GET
+#      allowedOrigins:
+#        - https://tencent.com
+#      allowedHeaders:
+#        - FIRST_ALLOWED_HEADER
+#      exposeHeaders:
+#        - FIRST_EXPOSED_HEADER
+#  tags:
+#    - key: abc
+#      value: xyz

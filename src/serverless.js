@@ -102,13 +102,14 @@ class ServerlessComopnent extends Component {
       outputs.website = `${this.getDefaultProtocol(inputs.protocol)}://${websiteUrl}`
       outputs.websiteOrigin = websiteUrl
     } else {
-      try {
-        // check website, if enable, disable it
-        const websiteInfo = await this.getCosWebsite(cos, region, inputs.bucket)
-        if (websiteInfo) {
-          await this.deleteCosWebsite(cos, region, inputs.bucket)
-        }
-      } catch (e) {}
+      // 不需要关闭【静态网站】
+      // try {
+      //   // check website, if enable, disable it
+      //   const websiteInfo = await this.getCosWebsite(cos, region, inputs.bucket)
+      //   if (websiteInfo) {
+      //     await this.deleteCosWebsite(cos, region, inputs.bucket)
+      //   }
+      // } catch (e) {}
 
       inputs.src = files
       await cos.deploy(inputs)
