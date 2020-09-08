@@ -1,10 +1,10 @@
-name: cos
-version: 0.0.7
-author: 'Tencent Cloud, Inc.'
-org: 'Tencent Cloud, Inc.'
+name: nero-sls-cos
+version: 0.0.2
+author: 'nero'
+org: 'nero'
 description: Deploy Tencent COS.
 keywords: 'tencent, serverless, cos'
-repo: 'https://github.com/serverless-components/tencent-cos'
-readme: 'https://github.com/serverless-components/tencent-cos/tree/master/README.md'
+repo: 'https://github.com/tza17313/nero-sls-cos'
+readme: 'https://github.com/tza17313/nero-sls-cos/blob/master/README.md'
 license: MIT
 main: ./src
