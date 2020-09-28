@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "tencent-component-toolkit": "^1.16.4"
+    "cos-nodejs-sdk-v5": "2.8.2",
+    "util": "^0.12.3"
   }
 }

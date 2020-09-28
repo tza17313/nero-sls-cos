@@ -1,6 +1,6 @@
 const { Component } = require('@serverless/core')
-const { Cos } = require('tencent-component-toolkit')
-const { TypeError } = require('tencent-component-toolkit/src/utils/error')
+const Cos = require('./cos')
+const { TypeError } = require('./utils/error')
 const util = require('util')
 const CONFIGS = require('./config')
 

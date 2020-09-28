@@ -7,7 +7,7 @@
 
 基于 https://github.com/serverless-components/tencent-cos 做了修改；
 
-**去除了 `website: false` 或者 website为空时会关闭【静态网站】的逻辑；**
+**去除了 `website、acl、cors、tags` 的逻辑；**
 
 ## 快速开始
 

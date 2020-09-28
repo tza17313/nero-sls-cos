@@ -1,5 +1,5 @@
 name: nero-sls-cos
-version: 0.0.3
+version: 0.1.0
 author: 'nero'
 org: 'nero'
 description: Deploy Tencent COS.
