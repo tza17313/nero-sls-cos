@@ -17,6 +17,7 @@ inputs:
   targetDir: /
   protocol: https
   region: ap-guangzhou
+  logRequestInfo: true
 ```
 
 ## 配置说明
@@ -30,3 +31,4 @@ inputs:
 | src       |   可选    |         | 要上传到存储桶的文件或目录                                      |
 | targetDir |   可选    |   `/`   | 要上传到存储桶的目标目录，默认目录是根路径 `/`                  |
 | protocol  |   可选    | `http`  | 访问协议                                                        |
+| logRequestInfo  |   可选    | false  | 打印上传文件的requestId                                                        |

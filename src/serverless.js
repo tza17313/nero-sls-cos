@@ -33,31 +33,12 @@ class ServerlessComopnent extends Component {
     return 'http'
   }
 
-  async getCosWebsite(cos, region, bucket) {
-    const getBucketWebsite = util.promisify(cos.cosClient.getBucketWebsite.bind(cos.cosClient))
-    const info = await getBucketWebsite({
-      Bucket: bucket,
-      Region: region
-    })
-    return info && info.WebsiteConfiguration
-  }
-
-  async deleteCosWebsite(cos, region, bucket) {
-    const deleteBucketWebsite = util.promisify(
-      cos.cosClient.deleteBucketWebsite.bind(cos.cosClient)
-    )
-    try {
-      await deleteBucketWebsite({
-        Bucket: bucket,
-        Region: region
-      })
-    } catch (e) {
-      console.log(e)
-    }
-  }
-
   async deploy(inputs) {
-    console.log(`Deploying COS...`)
+    console.log(`Deploying COS... `)
+
+    if(inputs.website || inputs.acl || inputs.cors  ){
+      console.log('nero-sls-cos只上传文件，并不新建bucket或修改bucket的website、acl、cors，如需修改，请登录网站修改' )
+    }
 
     const credentials = this.getCredentials()
     const { region } = inputs
@@ -75,15 +56,6 @@ class ServerlessComopnent extends Component {
 
     inputs.force = true
 
-    if (inputs.acl) {
-      inputs.acl = {
-        permissions: inputs.acl.permissions || 'private',
-        grantRead: inputs.acl.grantRead || '',
-        grantWrite: inputs.acl.grantWrite || '',
-        grantFullControl: inputs.acl.grantFullControl || ''
-      }
-    }
-
     // upload to target directory
     inputs.keyPrefix = inputs.targetDir || '/'
 
@@ -92,31 +64,10 @@ class ServerlessComopnent extends Component {
       bucket: inputs.bucket,
       cosOrigin: `${inputs.bucket}.cos.${region}.myqcloud.com`
     }
-    if (inputs.website === true) {
-      inputs.code = {
-        src: files,
-        index: inputs.indexPage || CONFIGS.indexPage,
-        error: inputs.errorPage || CONFIGS.errorPage
-      }
-      const websiteUrl = await cos.website(inputs)
-      outputs.website = `${this.getDefaultProtocol(inputs.protocol)}://${websiteUrl}`
-      outputs.websiteOrigin = websiteUrl
-    } else {
-      // 不需要关闭【静态网站】
-      // try {
-      //   // check website, if enable, disable it
-      //   const websiteInfo = await this.getCosWebsite(cos, region, inputs.bucket)
-      //   if (websiteInfo) {
-      //     await this.deleteCosWebsite(cos, region, inputs.bucket)
-      //   }
-      // } catch (e) {}
 
-      inputs.src = files
-      await cos.deploy(inputs)
-      outputs.url = `${this.getDefaultProtocol(inputs.protocol)}://${
-        inputs.bucket
-      }.cos.${region}.myqcloud.com`
-    }
+    inputs.src = files
+    await cos.deploy(inputs)
+    outputs.url = `${this.getDefaultProtocol(inputs.protocol)}://${inputs.bucket}.cos.${region}.myqcloud.com`
 
     this.state = inputs
     await this.save()
@@ -125,14 +76,14 @@ class ServerlessComopnent extends Component {
   }
 
   async remove() {
-    console.log(`Removing COS...`)
+    console.log(`禁用remove，请登录网站删除`)
 
-    const { state } = this
+    // const { state } = this
 
-    const credentials = this.getCredentials()
-    const cos = new Cos(credentials, state.region)
+    // const credentials = this.getCredentials()
+    // const cos = new Cos(credentials, state.region)
 
-    await cos.remove(state)
+    // await cos.remove(state)
 
     this.state = {}
   }
