@@ -37,7 +37,7 @@ class ServerlessComopnent extends Component {
     console.log(`Deploying COS... `)
 
     if(inputs.website || inputs.acl || inputs.cors  ){
-      console.log('nero-sls-cos只上传文件，并不新建bucket或修改bucket的website、acl、cors，如需修改，请登录网站修改' )
+      console.log('提示：nero-sls-cos只上传文件，并不新建bucket或修改bucket的website、acl、cors，如需修改，请登录网站修改' )
     }
 
     const credentials = this.getCredentials()
